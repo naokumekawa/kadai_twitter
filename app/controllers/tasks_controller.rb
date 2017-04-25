@@ -21,15 +21,17 @@ class TasksController < ApplicationController
   end
   
   def edit
-    @task.edit
+    @task = Task.find(params[:id])
+    #@task.edit
     flash[:success]='メッセージを編集しました。'
     redirect_back(fallback_location: root_path)
   end
+  
 
   private
 
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :status)
   end
   
   def correct_user
